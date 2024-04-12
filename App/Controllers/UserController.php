@@ -3,6 +3,7 @@
 namespace SlimSecure\App\Controllers;
 
 use SlimSecure\Core\BaseController;
+use SlimSecure\Core\Responses;
 
 /**
 * UserController Class basic
@@ -13,4 +14,7 @@ use SlimSecure\Core\BaseController;
 */
 class UserController extends BaseController
 {
+    public function profile(?array $params){
+        echo Responses::json($params);
+    }
 }
