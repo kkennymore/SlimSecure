@@ -1,0 +1,25 @@
+{
+    "name": "hitek/slimsecure",
+    "version": "0.0.1",
+    "description": "SlimSecure is a very slim fast and secure php framework built for Hitek Financials for creating apis backend services for their frontend applications.",
+    "type": "project",
+    "license": "License for Hitek Financials as an orgainsation, not to be use without the permission of the organization",
+    "autoload": {
+        "psr-4": {
+            "SlimSecure\\App\\": "App/",
+            "SlimSecure\\Core\\": "Core/",
+            "SlimSecure\\Configs\\": "Configs/"
+        }
+    },
+    "require": {
+        
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.2"
+    }
+}
