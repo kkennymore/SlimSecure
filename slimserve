@@ -21,13 +21,5 @@ if [ -z "$PHP_CLI" ]; then
     exit 1
 fi
 
-# Check if the current directory is in the PATH
-if [[ ":$PATH:" != *":$(pwd):"* ]]; then
-    echo "Adding $(pwd) to PATH for this session."
-    export PATH="$PATH:$(pwd)"
-    # Optionally source the .bashrc file if needed - This won't affect the global environment from a script!
-    source ~/.bashrc
-fi
-
 # Execute the PHP code and pass all command line arguments
-$PHP_CLI -r "require('./Core/SlimKernel.php');" "$@"
+$PHP_CLI -r "require('./Core/SlimEngine.php');" "$@"

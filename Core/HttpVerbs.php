@@ -3,26 +3,20 @@
 namespace SlimSecure\Core;
 
 /**
- * Author: Slimez
- * Developer: Hitek Financials Ltd
- * Year: 2024
- * Developer Contact: contact@tekfinancials.ng, kennethusiobaifo@yahoo.com
- * Project Name: Slimez
- * Description: Slimez.
- */
-
-/**
  * Class HttpVerbs
  *
- * This class provides methods for handling HTTP requests using different HTTP verbs.
+ * This class encapsulates handling of various HTTP verbs (GET, POST, PUT, DELETE, OPTIONS) using PHP's cURL library.
+ * It simplifies making HTTP requests by providing methods tailored for each HTTP action, supporting customization through headers and parameters.
  */
 class HttpVerbs
 {
     /**
-     * Process a GET request.
+     * Process a GET request to retrieve data from the specified endpoint.
      *
-     * @param string $endpointQueryStringParams The query string parameters for the endpoint.
-     * @return mixed The response data.
+     * @param string $endPoint The URL where the GET request is sent.
+     * @param string $bearerToken Authorization token, typically a bearer token.
+     * @param array $headers Additional headers to send with the request.
+     * @return array The response data decoded from JSON format.
      */
     public function getVerb(string $endPoint = '', string $bearerToken = '', array $headers = [])
     {
@@ -50,14 +44,15 @@ class HttpVerbs
     }
 
     /**
-     * Process an OPTIONS request.
+     * Process an OPTIONS request to retrieve the supported communication options for the specified endpoint.
      *
-     * @param array|object|string $optionsParams The parameters for the request.
-     * @param string $endPoint The endpoint for the request.
-     * @param string $contentType The content type for the request. Default is 'json'.
-     * @return mixed The response data.
+     * @param array|string $optionsParams Parameters to include in the OPTIONS request.
+     * @param string $endPoint The URL where the OPTIONS request is sent.
+     * @param string $bearerToken Authorization token for the request.
+     * @param array $headers Additional headers to send with the request.
+     * @return array The response data decoded from JSON format.
      */
-    public function optionsVerb(array | string $optionsParams, string $endPoint = '', string $bearerToken = '', array $headers = [])
+    public function optionsVerb($optionsParams, string $endPoint = '', string $bearerToken = '', array $headers = [])
     {
         $header = array_merge(
             [
@@ -70,32 +65,26 @@ class HttpVerbs
         $fields_string = is_array($optionsParams) ? http_build_query($optionsParams) : $optionsParams;
 
         $chandle = curl_init();
-        //set the url, number of POST vars, POST data
-        curl_setopt(
-            $chandle,
-            CURLOPT_URL,
-            trim($endPoint)
-        );
-        curl_setopt($chandle, CURLOPT_POST, true);
+        curl_setopt($chandle, CURLOPT_URL, trim($endPoint));
+        curl_setopt($chandle, CURLOPT_CUSTOMREQUEST, 'OPTIONS');
         curl_setopt($chandle, CURLOPT_POSTFIELDS, $fields_string);
         curl_setopt($chandle, CURLOPT_HTTPHEADER, $header);
-        //So that curl_exec returns the contents of the cURL; rather than echoing it
         curl_setopt($chandle, CURLOPT_RETURNTRANSFER, true);
         $result = curl_exec($chandle);
         curl_close($chandle);
-        // Return the data
         return json_decode($result, true);
     }
 
     /**
-     * Process a DELETE request.
+     * Process a DELETE request to remove resources from the specified endpoint.
      *
-     * @param string $endpointQueryStringParams The query string parameters for the endpoint.
-     * @return mixed The response data.
+     * @param string $endPoint The URL where the DELETE request is sent.
+     * @param string $bearerToken Authorization token for the request.
+     * @param array $headers Additional headers to send with the request.
+     * @return array The response data decoded from JSON format.
      */
     public function deleteVerb(string $endPoint = '', string $bearerToken = '', array $headers = [])
     {
-
         $header = array_merge(
             [
                 'Authorization: Bearer ' . trim($bearerToken),
@@ -122,15 +111,16 @@ class HttpVerbs
     }
 
     /**
-     * Process a PUT request.
+     * Process a PUT request to update existing resources at the specified endpoint.
      *
-     * @param array $putParams The parameters for the request.
-     * @param string $endPoint The endpoint for the request.
-     * @return mixed The response data.
+     * @param array $putParams Parameters for the PUT request, typically an array of data to update.
+     * @param string $endPoint The URL where the PUT request is sent.
+     * @param string $bearerToken Authorization token for the request.
+     * @param array $headers Additional headers to send with the request.
+     * @return array The response data decoded from JSON format.
      */
     public function putVerb(array $putParams = [], string $endPoint = '', string $bearerToken = '', array $headers = [])
     {
-
         $header = array_merge(
             [
                 'Authorization: Bearer ' . trim($bearerToken),
@@ -139,32 +129,29 @@ class HttpVerbs
             ],
             $headers
         );
-        $fields_string = is_array($putParams) ? http_build_query($putParams) : $putParams;
-        //open connection
+        $fields_string = http_build_query($putParams);
         $chandle = curl_init();
-        //set the url, number of POST vars, POST data
         curl_setopt($chandle, CURLOPT_URL, trim($endPoint));
-        curl_setopt($chandle, CURLOPT_PUT, true);
+        curl_setopt($chandle, CURLOPT_CUSTOMREQUEST, 'PUT');
         curl_setopt($chandle, CURLOPT_POSTFIELDS, $fields_string);
         curl_setopt($chandle, CURLOPT_HTTPHEADER, $header);
-        //So that curl_exec returns the contents of the cURL; rather than echoing it
         curl_setopt($chandle, CURLOPT_RETURNTRANSFER, true);
         $result = curl_exec($chandle);
         curl_close($chandle);
-        // Return the data
         return json_decode($result, true);
     }
 
     /**
-     * Process a POST request.
+     * Process a POST request to create new resources at the specified endpoint.
      *
-     * @param array $postParams The parameters for the request.
-     * @param string $endPoint The endpoint for the request.
-     * @return mixed The response data.
+     * @param array|string $postParams Parameters for the POST request, either in array or string format.
+     * @param string $endPoint The URL where the POST request is sent.
+     * @param string $bearerToken Authorization token for the request.
+     * @param array $headers Additional headers to send with the request.
+     * @return array The response data decoded from JSON format.
      */
-    public function postVerb(array | string $postParams, string $endPoint = '', string $bearerToken = '',  array $headers = [])
+    public function postVerb($postParams, string $endPoint = '', string $bearerToken = '', array $headers = [])
     {
-
         $headersData = array_merge(
             [
                 'Authorization: Bearer ' . trim($bearerToken),
@@ -189,15 +176,7 @@ class HttpVerbs
         ]);
 
         $result = curl_exec($curlHandler);
-
-        //$//httpCode = curl_getinfo($curlHandler, CURLINFO_HTTP_CODE);
-
-        if (curl_errno($curlHandler)) {
-            echo 'Curl error: ' . curl_error($curlHandler);
-        }
-
         curl_close($curlHandler);
-
         return json_decode($result, true);
     }
 }

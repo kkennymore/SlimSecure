@@ -1,22 +1,17 @@
 <?php
 
 namespace SlimSecure\Core;
-/**
- * Author: Oaad Global
- * Developer: Hitek Financials Ltd
- * Year: 2024
- * Developer Contact: contact@tekfinancials.ng, kennethusiobaifo@yahoo.com
- * Project Name: Slimez
- * Description: Slimez.
- */
 
 use SlimSecure\Configs\Env;
 use PDO;
 
 /**
- * Class Database
+ * Abstract class Database
  *
- * This abstract class provides a database connection and common database operations using PDO.
+ * Provides a foundational setup for database interactions within the SlimSecure application.
+ * Utilizes PHP Data Objects (PDO) to connect to and interact with the database. This class
+ * includes methods for preparing statements, managing transactions, and handling common
+ * database operations securely and efficiently.
  */
 abstract class Database
 {

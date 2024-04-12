@@ -1,14 +1,14 @@
 <?php
 namespace SlimSecure\Core;
 /**
- * Slimez Session Class
+ * SlimSecure Session Class
  *
- * Author: Oaad Global
+ * Author: Engineer Usiobaifo Kenneth
  * Developer: Hitek Financials Ltd
  * Year: 2024
  * Developer Contact: contact@tekfinancials.ng, kennethusiobaifo@yahoo.com
- * Project Name: Slimez
- * Description: Slimez.
+ * Project Name: SlimSecure
+ * Description: SlimSecure.
  */
 class Session
 {

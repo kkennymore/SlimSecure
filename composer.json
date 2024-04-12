@@ -11,9 +11,6 @@
             "SlimSecure\\Configs\\": "Configs/"
         }
     },
-    "require": {
-        
-    },
     "config": {
         "allow-plugins": {
             "php-http/discovery": true
@@ -21,5 +18,9 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^10.2"
+    },
+    "require": {
+        "mpdf/mpdf": "^6.1",
+        "phpoffice/phpword": "^1.2"
     }
 }

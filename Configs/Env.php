@@ -3,133 +3,184 @@
 namespace SlimSecure\Configs;
 
 /**
- * Application configuration
+ * Env Class
  *
- * PHP version 5.4
+ * Stores environment-specific configurations for the SlimSecure application.
+ * This class centralizes configuration settings such as database parameters,
+ * system characteristics, and operational constants to facilitate easy management
+ * and modification of settings that may vary between development, testing, and
+ * production environments.
  */
 class Env
 {
-
     /**
-     * 
+     * API Token for external service authentication.
+     * @var string
      */
     const API_TOKEN = "";
+
     /**
-     * @var array support file format
+     * List of supported file types for uploads or processing.
+     * @var array
      */
-    const SUPPORTED_FILE_TYPES =  ['jpg', 'png', 'jpeg', 'gif', 'mp3', 'mp4', 'pdf', 'docx'];
+    const SUPPORTED_FILE_TYPES = ['jpg', 'png', 'jpeg', 'gif', 'mp3', 'mp4', 'pdf', 'docx'];
+
     /**
-     * @var string set the system name
+     * Name of the system, used in various parts of the application.
+     * @var string
      */
     const SYSTEM_NAME = 'KVPNSmart';
+
     /**
-     * Database host
+     * Hostname for the database connection.
      * @var string
      */
     const DB_HOST = 'localhost';
 
+    /**
+     * URL for local development environment.
+     * @var string
+     */
     const LOCALHOST = "https://localhost";
 
-    
-
-     /**
-     * Database name
+    /**
+     * Database name to connect to.
      * @var string
      */
     const DB_NAME = 'Hitek';
 
     /**
-     * Database user
+     * Database username for the connection.
      * @var string
      */
-
     const DB_USER = 'root';
 
     /**
-     * Database password
+     * Database password for the connection.
      * @var string
      */
     const DB_PASSWORD = '';
+
     /**
-     *@var string Database character set
+     * Character set used for the database connection to ensure proper encoding.
+     * @var string
      */
     const DB_CHARSET = 'utf8';
+
     /**
-     * @var string Database driver
+     * Database driver, specifies the type of database.
+     * @var string
      */
     const DB_DRIVER = 'mysql';
 
     /**
-     * Show or hide error messages on screen
+     * Toggle to show or hide error messages directly on screen.
+     * Useful for debugging in a development environment.
      * @var boolean
      */
     const SHOW_ERRORS = true;
 
+    /**
+     * Toggle to log errors to a file or system logger.
+     * @var boolean
+     */
     const LOG_ERROR = true;
 
     /**
-     *@var string page name
+     * Default page name, used primarily in templating.
+     * @var string
      */
-
     const PAGE_NAME = '';
 
     /**
-     *@var string set the page search keywords
+     * Search keywords associated with the page, for SEO purposes.
+     * @var string
      */
     const PAGE_KEYWORDS = 'Music, radio, radio station';
+
     /**
-     *@var string page theming color code
+     * Primary theming color for the website, expressed as a HEX code.
+     * @var string
      */
     const PRIMARY_THEME = '#762262';
+
     /**
-     *@var string page domain name
+     * Domain name where the application is hosted.
+     * @var string
      */
     const DOMAIN_NAME = 'https://localhost';
+
     /**
-     *@var string page loading entry point
+     * Entry point for the application, typically a URL route.
+     * @var string
      */
     const ENTRY_POINT = '/home/index';
+
     /**
-     *@var array set language
+     * Supported languages for the application interface.
+     * @var array
      */
     const LANGUAGES = ['en', 'cn', 'fr', 'igbo', 'hausa', 'yoruba'];
+
     /**
-     *@var string set default language
+     * Default language for the application.
+     * @var string
      */
     const DEFAULT_LANGUAGE = 'en';
+
     /**
-     *@var string encryption key
+     * Key used for encryption operations within the application.
+     * @var string
      */
     const ENCRYPTION_KEY = '7434hgwhrtewvd';
+
     /**
-     *@var string hashing key
+     * Key used for hashing operations, especially in securing data like passwords.
+     * @var string
      */
     const HASH_KEY = 'jkdtyualawo';
+
     /**
-     *@var int cookie expiration time
+     * Duration in hours after which a cookie should expire.
+     * @var int
      */
     const COOKIE_EXPIRATION_TIME_IN_HOURS = 1;
+
     /**
-     *@var string admin emails
+     * Default email address used for administrative notifications.
+     * @var string
      */
     const DEFAULT_EMAIL = '';
-    const EMAIL_HOST_USER = "";
-    const EMAIL_HOST_PASSWORD = "";
+
     /**
-     *@var int set the auto logout timer
-     * if it is set to 0, it means the auto logout timer is disabled
+     * SMTP server details for sending email.
+     * @var string
      */
-    const AUTO_LOGOUT_TIMEOUT = 0;
+    const SMTP_SERVER = '';
+    const SMTP_PORT = 587; // Alternative port 465
+    const SMTP_USERNAME = '';
+    const SMTP_PASSWORD = '';
+
     /**
-     * @var string log file directory
+     * Name of the company, used in various branding and communication materials.
+     * @var string
      */
-    const AUTH_ERROR_DIRECTORY = 'Logs';
+    const COMPANY_NAME = '';
+
     /**
-     * @var string error log name
+     * API token for sending messages through a third-party service.
+     * @var string
      */
-    const AUTH_ERROR_FILE_NAME = '';
+    const MSG_API_TOKEN = '';
+
     /**
-     * lists of http response codes
+     * Endpoint URL for the email server.
+     * @var string
+     */
+    const EMAIL_SERVER_ENDPOINT = '';
+
+    /**
+     * Lists of HTTP response codes used throughout the application to standardize responses.
      */
     const ALREADY_REPORTED = 208;
     const METHOD_NOT_ALLOWED = 405;
@@ -142,13 +193,22 @@ class Env
     const SUCCESS_METHOD = 200;
     const NOT_FOUND_METHOD = 404;
 
+    /**
+     * Auto logout timeout in seconds.
+     * If set to 0, the auto logout feature is disabled.
+     * @var int
+     */
+    const AUTO_LOGOUT_TIMEOUT = 0;
 
-    // 
-    const SMTP_SERVER = '';
-    const SMTP_PORT = 587;//465
-    const SMTP_USERNAME = '';
-    const SMTP_PASSWORD = '';
-    const COMPANY_NAME = '';
-    const MSG_API_TOKEN = '';
-    const EMAIL_SERVER_ENDPOINT = '';
+    /**
+     * Directory where error logs are stored.
+     * @var string
+     */
+    const AUTH_ERROR_DIRECTORY = 'Logs';
+
+    /**
+     * Specific name of the error log file.
+     * @var string
+     */
+    const AUTH_ERROR_FILE_NAME = '';
 }

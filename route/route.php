@@ -1,22 +1,27 @@
 <?php
 
+use SlimSecure\Core\Router;
+use SlimSecure\App\Controllers\UserController;
 /**
- * Author: Hitek Financials Ltd
+ * Author: Engineer Usiobaifo Kenneth
  * Developer: Hitek Financials Ltd
  * Year: 2024
  * Developer Contact: contact@tekfinancials.ng, kennethusiobaifo@yahoo.com
- * Project Name: Hitek Financials Ltd (Slimez Framework)
- * Description: Slimez.
+ * Project Name: Hitek Financials Ltd (SlimSecure Framework)
+ * Description: SlimSecure.
  */
 
-// use SlimSecure\App\Controllers\UserController;
+
 /**
  * Define routes and their corresponding controllers and methods.
  */
 
-// Register route
-// Router::post("/user/signup", 'UserController@signup');
 // Login route
-// Router::post("/user/signin", [UserController::class, 'signin']);
-// Profile route
-// Router::post("/user/profile", [UserController::class, 'profile']);
+Router::post("/user/login", 'UserController@login');
+// Register route
+Router::post("/user/register", [UserController::class, 'register']);
+// get profile data with optional params, you can get the optional params in the controller profile method from the $params
+// by $params['id']
+Router::get("/user/profile/{id}/{name}/{city}/{email}",[UserController::class, "profile"]);
+// logout route
+Router::get("/user/logout", [UserController::class, 'logout']);

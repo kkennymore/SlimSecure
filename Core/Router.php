@@ -314,7 +314,7 @@ class Router
         if (is_array($handler) && strpos(implode($handler), '@') !== false || is_string($handler) && strpos($handler, '@') !== false) {
             // Explode the string
             list($className, $methodName) = is_array($handler) ? explode('@', implode($handler)) : explode('@', $handler);
-            $className = '\\SlimSecure\\App\\Controllers\\' . $className;
+            $className = '\\Hitek\Slimez\\App\\Controllers\\' . $className;
             $controller = new $className();
             call_user_func_array([$controller, $methodName], [$params]);
             return;
@@ -327,7 +327,7 @@ class Router
         // Check if the class exists
         if (!class_exists($className)) {
             // Check the string version
-            $className = '\\SlimSecure\\App\\Controllers' . $className;
+            $className = '\\Hitek\Slimez\\App\\Controllers' . $className;
             // Check if the class exists
             if (!class_exists($className)) {
                 self::handleNotFound([

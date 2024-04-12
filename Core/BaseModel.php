@@ -2,15 +2,6 @@
 
 namespace SlimSecure\Core;
 
-/**
- * Author: Oaad Global
- * Developer: Hitek Financials Ltd
- * Year: 2024
- * Developer Contact: contact@tekfinancials.ng, kennethusiobaifo@yahoo.com
- * Project Name: Slimez
- * Description: Slimez .
- */
-
 use SlimSecure\Core\Database;
 use SlimSecure\Core\Security;
 use SlimSecure\Core\Exceptions;
@@ -20,7 +11,10 @@ use PDO;
 /**
  * Class BaseModel
  *
- * This class serves as the base model for other model classes. It extends the Database class and provides common CRUD operations.
+ * Serves as the foundational model class for all model classes in the SlimSecure system.
+ * It extends the Database class to utilize its connection methods for performing
+ * common CRUD operations. This model facilitates a simplified and uniform interaction
+ * with the database across various parts of the application.
  */
 class BaseModel extends Database
 {
