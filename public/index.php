@@ -14,7 +14,7 @@
  * Description: Slimez.
  */
 
-require "./vendor/autoload.php";  // Load Composer dependencies
+require "./../vendor/autoload.php";  // Load Composer dependencies
 use SlimSecure\Configs\Env;        // Use the Environment configuration class
 
 session_start();  // Start a new or resume an existing session
@@ -38,7 +38,7 @@ setCookie(
 );
 
 // Load application routing configurations
-require "./route/route.php";
+require "./../route/route.php";
 
 /**
  * Error and Exception handling

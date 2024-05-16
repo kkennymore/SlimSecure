@@ -1,14 +1,8 @@
 RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ public/index.php [QSA,L]
 
-# Ensure mod_rewrite is available
-<IfModule mod_rewrite.c>
-    # Do not redirect if the requested file or directory exists
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-
-    # Redirect all requests to /public/index.php
-    # push every request to index.php file
-    RewriteRule ^(.*)$ /public/index.php [QSA]
-</IfModule>
 
 
